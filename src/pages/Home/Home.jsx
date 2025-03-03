@@ -1,14 +1,19 @@
-import Navbar from "../../components/Navbar/Navbar";
+import React from "react";
 import Header from "../../components/Header/Header";
 import ExploreMenu from "../../components/ExploreMenu/ExploreMenu";
+import FoodDisplay from "../../components/FoodDisplay/FoodDisplay";
+import AppDownload from "../../components/AppDownload/AppDownload";
+import { useState } from "react";
 
 function Home() {
+  const [category, setCategory] = useState("All");
   return (
-    <>
-      <Navbar />
+    <div>
       <Header />
-      <ExploreMenu />
-    </>
+      <ExploreMenu category={category} setCategory={setCategory} />
+      <FoodDisplay category={category} />
+      <AppDownload />
+    </div>
   );
 }
 
