@@ -41,7 +41,7 @@ function Footer() {
         </div>
       </div>
       <hr />
-      <div className="footer-copyright">Copyright &copy; Jessica.dev</div>
+      <div className="footer-copyright">Copyright &copy; OptimusCode</div>
     </div>
   );
 }

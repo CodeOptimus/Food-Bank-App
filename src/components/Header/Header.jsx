@@ -6,7 +6,7 @@ const Header = () => {
             <div className="header-contents">
                 <h2>Order Your Favourite Food Here</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, dolores alias sint consectetur optio vero dignissimos temporibus natus beatae dolorum!</p>
-                <button>View Menu</button>
+                <button className="view-menu-btn">View Menu</button>
             </div>
         </div>
     )

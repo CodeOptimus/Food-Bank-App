@@ -6,7 +6,7 @@ function AppDownload() {
   return (
     <div className="app-download" id="app-download">
       <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. <br />
+        Easy access? Get the Mobile App Now <br />
         Tomato App
       </p>
       <div className="app-download-platforms">

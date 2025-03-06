@@ -1,3 +1,4 @@
+import React from 'react'
 import { use, useState } from "react";
 import { assets } from "../../assets/assets";
 import "./LoginPopup.css";
@@ -27,6 +28,7 @@ export const LoginPopup = ({ setShowLogin }) => {
         <button>
           {currentState === "Sign Up" ? "Create Account" : "Login"}
         </button>
+
         <div className="login-popup-condition">
           <input type="checkbox" required />
           <p>By clicking, you agree to our Terms & Conditions</p>
@@ -46,3 +48,5 @@ export const LoginPopup = ({ setShowLogin }) => {
     </div>
   );
 };
+
+export default LoginPopup

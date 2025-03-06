@@ -4,7 +4,8 @@
     height: 100%;
     background-color: #00000090;
     display: grid;
-    z-index: 1;
+    z-index: 100;
+    overflow: hidden;
 }
 
 .login-popup-container {
@@ -19,6 +20,7 @@
     border-radius: 8px;
     font-size: 14px;
     animation: fadeIn 0.5s;
+    z-index: 9999;
 }
 
 .login-popup-title {
