@@ -149,13 +149,14 @@
 .menu-bar {
   cursor: pointer;
   display: none;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
   color: var(--text-secondary);
 }
 
 .menu-bar:hover {
   transform: scale(1.1);
   color: var(--accent-color);
+  background-color: var(--bg-secondary);
 }
 
 /* media queries */
@@ -218,10 +219,11 @@
 
   .menu-bar {
     display: block;
+    color: var(--text-primary);
   }
 
   .navmain {
-    padding: 1.5rem 0;
+    padding: 1.2rem 0;
   }
 
   /* hamburger menu styles */

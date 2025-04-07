@@ -151,7 +151,7 @@ function Navbar({ setShowLogin }) {
 
           {/* Hamburger Icon */}
           <HiBars3BottomRight
-            size={30}
+            size={80}
             className="menu-bar"
             onClick={handleMenuClick}
           />
