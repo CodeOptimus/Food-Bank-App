@@ -8,11 +8,14 @@ import { StoreContext } from "../../context/StoreContext";
 import { ThemeContext } from "../../context/ThemeContext";
 import "./Navbar.css";
 
-function Navbar() {
+function Navbar({ setShowLogin }) {
   const [menu, setMenu] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const { CartItems } = useContext(StoreContext);
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+  const searchInputRef = useRef(null);
 
   // creating a ref for the hamburger menu
   const menuRef = useRef(null);
@@ -51,6 +54,30 @@ function Navbar() {
   const handleMenuItemClick = (menuItem) => {
     setMenu(menuItem);
     setIsMenuOpen(false);
+  };
+
+  const handleSearchClick = () => {
+    setIsSearchExpanded(true);
+    setTimeout(() => {
+      searchInputRef.current?.focus();
+    }, 100);
+  };
+
+  const handleSearchBlur = () => {
+    if (searchQuery === "") {
+      setIsSearchExpanded(false);
+    }
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    // console.log("Searching for:", searchQuery);
+    // For now, we'll just navigate to the home page with a search parameter
+    window.location.href = `/?search=${encodeURIComponent(searchQuery)}`;
   };
 
   return (
@@ -92,7 +119,25 @@ function Navbar() {
           </ul>
         </div>
         <div className="navbar-right">
-          <img src={assets.search_icon} alt="" />
+          <div className={`search-container ${isSearchExpanded ? "expanded" : ""}`}>
+            <form onSubmit={handleSearchSubmit}>
+              <input
+                ref={searchInputRef}
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onBlur={handleSearchBlur}
+                className="search-input"
+              />
+            </form>
+            <img 
+              src={assets.search_icon} 
+              alt="Search" 
+              onClick={handleSearchClick}
+              className="search-icon"
+            />
+          </div>
           <div className="navbar-search-icon">
             <Link to="/cart">
               <img src={assets.basket_icon} alt="Cart" />
@@ -102,7 +147,7 @@ function Navbar() {
           <button className="theme-toggle" onClick={toggleTheme}>
             {isDarkMode ? <MdLightMode size={24} /> : <MdDarkMode size={24} />}
           </button>
-          <button className="signin-btn">Sign In</button>
+          <button className="signin-btn" onClick={() => setShowLogin(true)}>Sign In</button>
 
           {/* Hamburger Icon */}
           <HiBars3BottomRight

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
@@ -12,6 +12,19 @@ import "./styles/theme.css";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
+
+  useEffect(() => {
+    if (showLogin) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showLogin]);
+
   return (
     <ThemeContextProvider>
       <StoreContextProvider>

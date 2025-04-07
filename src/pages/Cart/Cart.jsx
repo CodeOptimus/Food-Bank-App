@@ -1,29 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
-import PaymentSuccess from "../../components/PaymentSuccess/PaymentSuccess";
 import "./Cart.css";
 
 export const Cart = () => {
   const { CartItems, food_list, removeFromCart, getTotalCartAmount } =
     useContext(StoreContext);
   const navigate = useNavigate();
-  const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
 
-  const handlePlaceOrder = () => {
-    setShowPaymentSuccess(true);
-    // Navigate to place-order page after a short delay
-    setTimeout(() => {
-      navigate("/place-order");
-    }, 2000);
+  const navigateToPlaceOrder = () => {
+    navigate("/place-order");
   };
 
   return (
     <div className="cart">
-      {showPaymentSuccess && (
-        <PaymentSuccess onClose={() => setShowPaymentSuccess(false)} />
-      )}
       <div className="cart-items">
         <div className="cart-items-title">
           <p>Items</p>
@@ -76,7 +67,7 @@ export const Cart = () => {
               </p>
             </div>
           </div>
-          <button onClick={handlePlaceOrder}>Proceed to checkout</button>
+          <button onClick={navigateToPlaceOrder}>Proceed to checkout</button>
         </div>
         <div className="cart-promocode">
           <div>

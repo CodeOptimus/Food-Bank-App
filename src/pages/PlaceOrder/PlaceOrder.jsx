@@ -1,24 +1,43 @@
+import { useState } from "react";
 import "./PlaceOrder.css";
 import { useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
+import PaymentSuccess from "../../components/PaymentSuccess/PaymentSuccess";
+import { useNavigate } from "react-router-dom";
 
 export const PlaceOrder = () => {
   const { getTotalCartAmount } = useContext(StoreContext);
+  const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
+  const navigate = useNavigate();
+
+  const handlePayment = (e) => {
+    e.preventDefault();
+    setShowPaymentSuccess(true);
+    
+    // Navigate to home page after a delay
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
+  };
+
   return (
-    <form className="place-order">
+    <form className="place-order" onSubmit={handlePayment}>
+      {showPaymentSuccess && (
+        <PaymentSuccess onClose={() => setShowPaymentSuccess(false)} />
+      )}
       <div className="place-order-left">
         <p className="title">Delivery Information </p>
         <div className="multi-fields">
-          <input type="text" placeholder="First Name" />
-          <input type="text" placeholder="Last Name" />
+          <input type="text" placeholder="First Name" required />
+          <input type="text" placeholder="Last Name" required />
         </div>
-        <input type="text" placeholder="Email" />
-        <input type="text" placeholder="Street" />
+        <input type="email" placeholder="Email" required />
+        <input type="text" placeholder="Street" required />
         <div className="multi-fields">
-          <input type="text" placeholder="Zip Code" />
-          <input type="text" placeholder="Country" />
+          <input type="text" placeholder="Zip Code" required />
+          <input type="text" placeholder="Country" required />
         </div>
-        <input type="text" placeholder="Phone Number" />
+        <input type="tel" placeholder="Phone Number" required />
       </div>
       <div className="place-order-right">
         <div className="cart-total">
@@ -31,9 +50,7 @@ export const PlaceOrder = () => {
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>
-                Ghc{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 10}
-              </p>
+              <p>Gh₵{getTotalCartAmount() === 0 ? 0 : 10}</p>
             </div>
             <hr />
             <div className="cart-total-details">
@@ -43,7 +60,7 @@ export const PlaceOrder = () => {
               </p>
             </div>
           </div>
-          <button>Proceed to Payment</button>
+          <button type="submit">Proceed to Payment</button>
         </div>
       </div>
     </form>

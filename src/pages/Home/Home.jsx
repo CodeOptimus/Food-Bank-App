@@ -7,11 +7,13 @@ import { useState } from "react";
 
 function Home() {
   const [category, setCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+  
   return (
     <div>
-      <Header />
+      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <ExploreMenu category={category} setCategory={setCategory} />
-      <FoodDisplay category={category} />
+      <FoodDisplay category={category} searchQuery={searchQuery} />
       <AppDownload />
     </div>
   );
