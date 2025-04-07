@@ -1,18 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
+import PaymentSuccess from "../../components/PaymentSuccess/PaymentSuccess";
 import "./Cart.css";
 
 export const Cart = () => {
   const { CartItems, food_list, removeFromCart, getTotalCartAmount } =
     useContext(StoreContext);
   const navigate = useNavigate();
-  const navigateToPlaceOrder = () => {
-    navigate("/place-order");
+  const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
+
+  const handlePlaceOrder = () => {
+    setShowPaymentSuccess(true);
+    // Navigate to place-order page after a short delay
+    setTimeout(() => {
+      navigate("/place-order");
+    }, 2000);
   };
+
   return (
     <div className="cart">
+      {showPaymentSuccess && (
+        <PaymentSuccess onClose={() => setShowPaymentSuccess(false)} />
+      )}
       <div className="cart-items">
         <div className="cart-items-title">
           <p>Items</p>
@@ -27,9 +38,9 @@ export const Cart = () => {
         {food_list.map((item, index) => {
           if (CartItems[item._id] > 0) {
             return (
-              <div>
-                <div className="cart-items-title cart-items-item">
-                  <img src={item.image} alt="" />
+              <div key={item._id} className="cart-items-item">
+                <div className="cart-items-title">
+                  <img src={item.image} alt={item.name} />
                   <p>{item.name}</p>
                   <p>Gh₵{item.price}</p>
                   <p>{CartItems[item._id]}</p>
@@ -41,6 +52,7 @@ export const Cart = () => {
               </div>
             );
           }
+          return null;
         })}
       </div>
       <div className="cart-bottom">
@@ -49,22 +61,22 @@ export const Cart = () => {
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
-              <p>Ghc{getTotalCartAmount()}</p>
+              <p>Gh₵{getTotalCartAmount()}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery Charges</p>
-              <p>Ghc{getTotalCartAmount() === 0 ? 0 : 10}</p>
+              <p>Gh₵{getTotalCartAmount() === 0 ? 0 : 10}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Total</p>
               <p>
-                Ghc{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 10}
+                Gh₵{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 10}
               </p>
             </div>
           </div>
-          <button onClick={() => navigateToPlaceOrder()}>Proceed to checkout</button>
+          <button onClick={handlePlaceOrder}>Proceed to checkout</button>
         </div>
         <div className="cart-promocode">
           <div>

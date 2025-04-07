@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    margin: 100px;
+    margin: 200px;
 }
 
 .place-order-left {
@@ -32,6 +32,10 @@
 .place-order-right {
     width: 100%;
     max-width: max(40%, 500px);
+}
+
+.place-order .cart-total h2 {
+    margin-bottom: 2rem;
 }
 
 .place-order .cart-total button {

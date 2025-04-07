@@ -1,0 +1,44 @@
+:root {
+  /* Light theme variables */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f1f1;
+  --bg-tertiary: rgba(245, 241, 241, 0.4);
+  --text-primary: #333333;
+  --text-secondary: #495573;
+  --text-tertiary: #666666;
+  --accent-color: tomato;
+  --border-color: #e2e2e2;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --card-bg: #ffffff;
+  --input-bg: #eaeaea;
+  --hover-bg: rgba(0, 0, 0, 0.05);
+  --menu-bg: rgba(255, 255, 255, 0.95);
+  --menu-shadow: -4px 4px 8px rgba(0, 0, 0, 0.1);
+  --backdrop-color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] {
+  /* Dark theme variables */
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --bg-tertiary: rgba(30, 30, 30, 0.4);
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --text-tertiary: #808080;
+  --accent-color: #ff6347;
+  --border-color: #404040;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --card-bg: #1e1e1e;
+  --input-bg: #333333;
+  --hover-bg: rgba(255, 255, 255, 0.05);
+  --menu-bg: rgba(30, 30, 30, 0.95);
+  --menu-shadow: -4px 4px 8px rgba(0, 0, 0, 0.3);
+  --backdrop-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Apply theme variables to body */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+} 
